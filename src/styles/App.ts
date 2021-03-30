@@ -41,6 +41,13 @@ export const FormContainer = styled.form`
     border-radius: 0.25rem;
 
     margin-right: 20px;
+
+    border: 0;
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 1px 2px var(--button-submit);
+    }
   }
 
   button[type='submit'] {
