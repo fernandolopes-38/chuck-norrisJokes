@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  word-wrap: break-word;
+  word-break: break-word;
 
   padding: 15px;
 
