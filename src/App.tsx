@@ -15,6 +15,7 @@ export interface Joke {
 
 export const App: React.FC = () => {
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState('');
   const [categoryInput, setCategoryInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -25,6 +26,7 @@ export const App: React.FC = () => {
 
   const handleJokeByCategory = async (category: string) => {
     setIsLoading(true);
+    setCategory(category);
     try {
       const response = await api.get(`jokes/random?category=${category}`);
       setJokes([response.data]);
@@ -42,6 +44,7 @@ export const App: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
+    setCategory(categoryInput);
     try {
       const response = await api.get(`jokes/search?query=${categoryInput}`);
       setJokes(response.data.result)
@@ -70,20 +73,23 @@ export const App: React.FC = () => {
 
         <FormContainer onSubmit={handleSubmit}>
           <label htmlFor="categoryInput">Find Joke</label>
-          <input
-            id="categoryInput"
-            type="text"
-            value={categoryInput}
-            onChange={e => setCategoryInput(e.target.value)}
-            placeholder="Category"
-          />
 
-          <button 
-            type="submit" 
-          >
-            Find joke
-          </button>
+          <div>
+            <input
+              id="categoryInput"
+              type="text"
+              value={categoryInput}
+              onChange={e => setCategoryInput(e.target.value)}
+              placeholder="Category"
+            />
+
+            <button type="submit" >
+              Find joke
+            </button>
+          </div>
         </FormContainer>
+
+        <h2>Category: {category}</h2>
 
         {isLoading ? 
           <Gif src={loadingGif} alt="load"/> :

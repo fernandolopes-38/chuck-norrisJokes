@@ -10,6 +10,10 @@ export const Container = styled.div`
   header {
     margin-bottom: 2.5rem;
   }
+
+  h2 {
+    margin-bottom: 15px;
+  }
 `;
 
 export const FormContainer = styled.form`
@@ -22,13 +26,21 @@ export const FormContainer = styled.form`
 
   label {
     font-size: 1.5rem;
-    margin-bottom: 5px;
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 1rem;
   }
 
   input {
     padding: 0.5rem;
     font-size: 1rem;
     border-radius: 0.25rem;
+
+    margin-right: 20px;
   }
 
   button[type='submit'] {
@@ -38,13 +50,23 @@ export const FormContainer = styled.form`
 
     background: var(--button-submit);
 
-    margin-top: 1rem;
-
     transition: filter 0.2s;
 
     &:hover {
       filter: brightness(0.9);
       color: #fff;
+    }
+  }
+
+  @media (max-width: 720px) {
+    div {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      margin-right: 0;
+      margin-bottom: 20px;
     }
   }
 `;
